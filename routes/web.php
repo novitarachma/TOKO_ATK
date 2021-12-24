@@ -31,3 +31,4 @@ Route::resource('products', ProductController::class);
 Route::get('/search', [ProductController::class, 'search'])->name('search');
 Route::resource('transaksi', TransaksiController::class);
 Route::get('/search', [TransaksiController::class, 'search'])->name('search');
+Route::get('/transaksi/{id}/report', [TransaksiController::class, 'report']);

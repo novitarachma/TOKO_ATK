@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Transaksi;
+use PDF;
 class TransaksiController extends Controller
 {
     /**
@@ -106,4 +107,11 @@ class TransaksiController extends Controller
         $transaksi->delete();
         return redirect()->route('transaksi.index');
     }
+
+    public function report($id){
+        $transaksi = Transaksi::find($id);
+        $pdf = PDF::loadview('transaksi.report',['transaksi'=>$transaksi]);
+        return $pdf->stream();
+       }
+       
 }

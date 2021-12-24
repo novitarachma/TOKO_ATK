@@ -24,6 +24,7 @@
                             Updated at : {{ $transaksi->updated_at }} <br>
                         </div>
                     </div>
+                        <a href="/transaksi/{{$transaksi->id}}/report" class="btn btn-primary" target="_blank">PRINT PDF</a>
                         <a href="/transaksi" class="btn btn-primary">Kembali</a>
                     </form>
                 </div>
