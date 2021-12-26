@@ -17,7 +17,7 @@
                     <form class="form" method="get" action="{{ route('search') }}">
                         <div class="form-group w-100 mb-3">
                             <label for="search" class="d-block mr-2">Search</label>
-                            <input type="text" name="search" class="form-control w-75 d-inline" 
+                            <input type="text" name="search" class="form-control w-75 d-inline"
                             id="search" placeholder="Search the name">
                             <button type="submit" class="btn btn-primary mb-1">Search</button>
                         </div>
@@ -28,7 +28,7 @@
                         <p>{{ $message }}</p>
                     </div>
                     @endif
-                    
+
                     <a href="/products/create" class="btn btn-primary">Add Data</a> <br><br>
 
                     <table class="table table-responsive table-striped">
@@ -37,6 +37,7 @@
                                 <th>Nama</th>
                                 <th>Deskripsi</th>
                                 <th>Harga</th>
+                                <th>Satuan</th>
                                 <th>Action</th>
                             </tr>
                             </thead>

@@ -12,8 +12,11 @@
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
-                    @endif                    
+                    @endif
                     <div class="card-header">{{ $product->nama }}</div>
+                        <div class="card-body">
+                            <img height="100px" src="{{ asset('storage/'.$product->photo) }}" />
+                        </div>
                         <div class="card-body">
                             Nama : {{ $product->nama }} <br>
                             Deskripsi : {{ $product->deskripsi }} <br>

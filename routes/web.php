@@ -6,6 +6,7 @@ use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KategoriController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,4 +35,5 @@ Route::get('/search', [ProductController::class, 'search'])->name('search');
 Route::resource('transaksi', TransaksiController::class);
 Route::get('/search', [TransaksiController::class, 'search'])->name('search');
 Route::get('/transaksi/{id}/report', [TransaksiController::class, 'report']);
-
+Route::resource('kategori', KategoriController::class);
+Route::get('/search', [KategoriController::class, 'search'])->name('search');

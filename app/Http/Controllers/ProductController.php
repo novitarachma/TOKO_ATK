@@ -42,17 +42,30 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->file('photo')){
-            $image_name = $request->file('photo')->store('images','public');
-        }  
-        //add data
-        // $product = new Product;
-        $product->photo = $image_name;
-        // $product->save();
-        Product::create($request->all());
-        // if true, redirect to index
-        return redirect()->route('products.index')
-        ->with('success', 'Add data success!');
+        //melakukan validasi data
+        $request->validate([
+            'nama' => 'required',
+            'deskripsi' => 'required',
+            'harga' => 'required',
+            'satuan' => 'required',
+            ]);
+
+            if ($request->file('photo')) {
+                $image_name = $request->file('photo')->store('images', 'public');
+            }
+
+            //fungsi eloquent untuk menambah data
+            $product = new Product();
+            $product->nama = $request->get('nama');
+            $product->deskripsi = $request->get('deskripsi');
+            $product->harga = $request->get('harga');
+            $product->photo = $image_name;
+            $product->satuan = $request->get('satuan');
+
+            $product -> save();
+            //jika data berhasil ditambahkan, akan kembali ke halaman utama
+            return redirect()->route('products.index')
+            ->with('success', 'Add data success!');
 
     }
 
@@ -67,7 +80,7 @@ class ProductController extends Controller
         $product = Product::find($id);
         return view('products.show',['product'=>$product]);
     }
-    
+
 
     /**
      * Show the form for editing the specified resource.
@@ -98,12 +111,12 @@ class ProductController extends Controller
         $product->save();
         return redirect()->route('products.index');
 
-        if($product->photo && file_exists(storage_path('app/public/' 
+        if($product->photo && file_exists(storage_path('app/public/'
         . $product->photo)))
         {
         \Storage::delete('public/'.$product->photo);
         }
-        $image_name = $request->file('photo')->store('images', 
+        $image_name = $request->file('photo')->store('images',
         'public');
         $product->photo = $image_name;
     }
