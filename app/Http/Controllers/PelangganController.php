@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pelanggan;
+use App\Models\Kelas;
 class PelangganController extends Controller
 {
     /**
@@ -15,6 +16,7 @@ class PelangganController extends Controller
     {
         $pelanggans = Pelanggan::all();
         return view('pelanggans.index',['pelanggan'=>$pelanggans]);
+
 
     }
 
@@ -32,6 +34,8 @@ class PelangganController extends Controller
     public function create()
     {
         return view('pelanggans.create');
+
+
     }
 
     /**
@@ -42,11 +46,12 @@ class PelangganController extends Controller
      */
     public function store(Request $request)
     {
-        //add data
-        Pelanggan::create($request->all());
-        // if true, redirect to index
-        return redirect()->route('pelanggans.index')
-        ->with('success', 'Add data success!');
+         //add data
+         Pelanggan::create($request->all());
+         // if true, redirect to index
+         return redirect()->route('pelanggans.index')
+         ->with('success', 'Add data success!');
+
 
     }
 

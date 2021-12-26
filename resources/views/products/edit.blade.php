@@ -14,7 +14,7 @@
                     </div>
                     @endif
 
-                    <form action="/products/{{$product->id}}" method="post">
+                    <form action="/products/{{$product->id}}" method="post" enctype="multipart/form-data">
                         {{csrf_field()}}
                         @method('PUT')
                         <input type="hidden" name="id" value="{{$product->id}}"></br>
@@ -22,6 +22,12 @@
                         <label for="nama">Nama</label>
                         <input type="text" class="form-control" 
                         required="required" name="nama" value="{{$product->nama}}"></br>
+                        </div>
+                        <div class="form-group">
+                        <label for="photo">Feature Image</label>
+                        <input type="file" class="form-control" required="required" 
+                        name="photo" value="{{$product->photo}}"></br>
+                        <img width="150px" src="{{asset('storage/'.$product->photo)}}">
                         </div>
                         <div class="form-group">
                         <label for="deskripsi">Deskripsi</label>
@@ -32,6 +38,11 @@
                         <label for="harga">Harga</label>
                         <input type="text" class="form-control" 
                         required="required" name="harga" value="{{$product->harga}}"></br>
+                        </div>
+                        <div class="form-group">
+                        <label for="satuan">Satuan</label>
+                        <input type="number" class="form-control" 
+                        required="required" name="satuan" value="{{$product->satuan}}"></br>
                         </div>
                         <button type="submit" name="edit" class="btn btn-primary 
                         float-right">Save Changes</button>

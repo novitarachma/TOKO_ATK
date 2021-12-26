@@ -18,6 +18,7 @@
                             Nama : {{ $product->nama }} <br>
                             Deskripsi : {{ $product->deskripsi }} <br>
                             Harga : {{ $product->harga }} <br>
+                            Satuan : {{ $product->satuan }} <br>
                             Created at : {{ $product->created_at }} <br>
                             Updated at : {{ $product->updated_at }} <br>
                         </div>

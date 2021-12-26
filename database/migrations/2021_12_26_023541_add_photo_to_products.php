@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePelanggans extends Migration
+class AddPhotoToProducts extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreatePelanggans extends Migration
      */
     public function up()
     {
-        Schema::create('pelanggans', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama');
-            $table->string('alamat', 20);
-            $table->string('no_telepon', 20);
-            $table->timestamps();
+        Schema::table('products', function (Blueprint $table) {
+            $table->string('photo')->after('nama')->nullable();
         });
     }
 
@@ -29,6 +25,8 @@ class CreatePelanggans extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pelanggans');
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropColumn('photo');
+        });
     }
 }

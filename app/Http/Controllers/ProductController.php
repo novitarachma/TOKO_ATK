@@ -42,7 +42,13 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->file('photo')){
+            $image_name = $request->file('photo')->store('images','public');
+        }  
         //add data
+        // $product = new Product;
+        $product->photo = $image_name;
+        // $product->save();
         Product::create($request->all());
         // if true, redirect to index
         return redirect()->route('products.index')
@@ -88,8 +94,18 @@ class ProductController extends Controller
         $product->nama = $request->nama;
         $product->deskripsi = $request->deskripsi;
         $product->harga = $request->harga;
+        $product->satuan = $request->satuan;
         $product->save();
         return redirect()->route('products.index');
+
+        if($product->photo && file_exists(storage_path('app/public/' 
+        . $product->photo)))
+        {
+        \Storage::delete('public/'.$product->photo);
+        }
+        $image_name = $request->file('photo')->store('images', 
+        'public');
+        $product->photo = $image_name;
     }
 
     /**

@@ -14,13 +14,18 @@
                     </div>
                     @endif
 
-                    <form action="/products" method="post">
+                    <form action="/products" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                     <label for="nama">Nama</label>
                     <input type="text" class="form-control" 
                     required="required" name="nama"></br>
                     </div>
+                    <div class="form-group">
+                    <label for="photo">Photo</label>
+                    <input type="file" class="form-control" required="required" 
+                    name="photo"></br>
+                    <div>
                     <div class="form-group">
                     <label for="deskripsi">Deskripsi</label>
                     <input type="text" class="form-control" 
@@ -30,6 +35,12 @@
                     <label for="harga">Harga</label>
                     <input type="text" class="form-control" 
                     required="required" name="harga"></br>
+                    </div>
+                    <div class="form-group">
+                    <label for="satuan">Satuan</label>
+                    <input type="number" class="form-control" 
+                    required="required" name="satuan"></br>
+                </select>
                     </div>
                     <button type="submit" name="add" class="btn btn-primary 
                     float-right">Add Data</button>

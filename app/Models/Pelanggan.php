@@ -9,5 +9,4 @@ class Pelanggan extends Model
 {
     //use HasFactory;
     protected $fillable = ['nama','alamat','no_telepon'];
-    
 }

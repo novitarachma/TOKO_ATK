@@ -46,6 +46,7 @@
                                 <td>{{ $s->nama }}</td>
                                 <td>{{ $s->deskripsi }}</td>
                                 <td>{{ $s->harga }}</td>
+                                <td>{{ $s->satuan }}</td>
                             <td>
                                 <form action="/products/{{$s->id}}" method="post">
                                     <a href="/products/{{$s->id}}/edit" class="btn btn-warning">Edit</a>

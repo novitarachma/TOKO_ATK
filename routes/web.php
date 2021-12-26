@@ -5,6 +5,8 @@ use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\DashboardController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,3 +34,4 @@ Route::get('/search', [ProductController::class, 'search'])->name('search');
 Route::resource('transaksi', TransaksiController::class);
 Route::get('/search', [TransaksiController::class, 'search'])->name('search');
 Route::get('/transaksi/{id}/report', [TransaksiController::class, 'report']);
+
