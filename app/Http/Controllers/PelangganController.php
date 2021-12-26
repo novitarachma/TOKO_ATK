@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 use App\Models\Pelanggan;
-use App\Models\Kelas;
 class PelangganController extends Controller
 {
     /**
@@ -33,7 +33,8 @@ class PelangganController extends Controller
      */
     public function create()
     {
-        return view('pelanggans.create');
+        $kategori = Kategori::all();
+        return view('pelanggans.create',['kategori'=>$kategori]);
 
 
     }
@@ -46,12 +47,27 @@ class PelangganController extends Controller
      */
     public function store(Request $request)
     {
-         //add data
-         Pelanggan::create($request->all());
-         // if true, redirect to index
+        $request->validate([
+            'nama' => 'required',
+            'alamat' => 'required',
+            'no_telepon' => 'required',
+            'kategori_id' => 'required',
+            ]);
+
+        $kategori = Kategori::find($request->get('kategori_id'));
+
+        $pelanggan = new Pelanggan;
+        $pelanggan->nama = $request->nama;
+        $pelanggan->alamat = $request->alamat;
+        $pelanggan->no_telepon = $request->no_telepon;
+
+        $pelanggan->kategori()->associate($kategori);
+        $pelanggan->save();
+        //  //add data
+        //  Pelanggan::create($request->all());
+        //  // if true, redirect to index
          return redirect()->route('pelanggans.index')
          ->with('success', 'Add data success!');
-
 
     }
 
@@ -66,7 +82,7 @@ class PelangganController extends Controller
         $pelanggan = Pelanggan::find($id);
         return view('pelanggans.show',['pelanggan'=>$pelanggan]);
     }
-    
+
 
     /**
      * Show the form for editing the specified resource.
@@ -76,8 +92,9 @@ class PelangganController extends Controller
      */
     public function edit($id)
     {
+        $kategori = Kategori::all();
         $pelanggan = Pelanggan::find($id);
-        return view('pelanggans.edit',['pelanggan'=>$pelanggan]);
+        return view('pelanggans.edit',['pelanggan'=>$pelanggan],['kategori'=>$kategori]);
     }
 
     /**
@@ -89,12 +106,35 @@ class PelangganController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'nama' => 'required',
+            'alamat' => 'required',
+            'no_telepon' => 'required',
+            'kategori_id' => 'required',
+            ]);
+
+        $kategori = Kategori::find($request->get('kategori_id'));
+
         $pelanggan = Pelanggan::find($id);
         $pelanggan->nama = $request->nama;
         $pelanggan->alamat = $request->alamat;
         $pelanggan->no_telepon = $request->no_telepon;
+
+        $pelanggan->kategori()->associate($kategori);
         $pelanggan->save();
-        return redirect()->route('pelanggans.index');
+        //  //add data
+        //  Pelanggan::create($request->all());
+        //  // if true, redirect to index
+         return redirect()->route('pelanggans.index')
+         ->with('success', 'Edit data success!');
+
+
+        // $pelanggan = Pelanggan::find($id);
+        // $pelanggan->nama = $request->nama;
+        // $pelanggan->alamat = $request->alamat;
+        // $pelanggan->no_telepon = $request->no_telepon;
+        // $pelanggan->save();
+        // return redirect()->route('pelanggans.index');
     }
 
     /**

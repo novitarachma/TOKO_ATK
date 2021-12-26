@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __(' DATA PELANGGAN') }}</div>
+                    <div class="card-header">{{ __(' DATA KATEGORI PELANGGAN') }}</div>
 
                     <div class="card-body">
                     @if (session('status'))
@@ -29,34 +29,26 @@
                     </div>
                     @endif
 
-                    <a href="/pelanggans/create" class="btn btn-primary">Add Data</a> <br><br>
+                    <a href="/kategori/create" class="btn btn-primary">Add Data</a> <br><br>
 
                     <table class="table table-responsive table-striped">
                         <thead>
                             <tr>
-                                <th>Nama</th>
-                                <th>Kategori</th>
-                                <th>Alamat</th>
-                                <th>No Telepon</th>
+                                <th>Nama Kategori</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($pelanggan as $s)
+                            @foreach($kategori as $k)
                             <tr>
-                                <td>{{ $s->nama }}</td>
-                                <td>{{ $s->kategori->nama_kategori }}</td>
-                                <td>{{ $s->alamat }}</td>
-                                <td>{{ $s->no_telepon }}</td>
-                            <td>
-                                <form action="/pelanggans/{{$s->id}}" method="post">
-                                    <a href="/pelanggans/{{$s->id}}/edit" class="btn btn-warning">Edit</a>
-                                    <a href="/pelanggans/{{$s->id}}" class="btn btn-info">Show</a>
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" name="delete" class="btn btn-danger">Delete</button>
-                                </form>
-                            </td>
+                                <td>{{ $k->nama_kategori }}</td>
+                                <td>
+                                    <form action="{{ route('kategori.destroy', $k->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" name="delete" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

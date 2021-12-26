@@ -12,10 +12,11 @@
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
-                    @endif                    
+                    @endif
                     <div class="card-header">{{ $pelanggan->nama }}</div>
                         <div class="card-body">
                             Nama : {{ $pelanggan->nama }} <br>
+                            Kategori : {{ $pelanggan->kategori->nama_kategori }} <br>
                             Alamat : {{ $pelanggan->alamat }} <br>
                             No Telepon : {{ $pelanggan->no_telepon }} <br>
                             Created at : {{ $pelanggan->created_at }} <br>

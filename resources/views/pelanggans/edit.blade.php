@@ -20,20 +20,28 @@
                         <input type="hidden" name="id" value="{{$pelanggan->id}}"></br>
                         <div class="form-group">
                         <label for="nama">Nama</label>
-                        <input type="text" class="form-control" 
+                        <input type="text" class="form-control"
                         required="required" name="nama" value="{{$pelanggan->nama}}"></br>
                         </div>
                         <div class="form-group">
                         <label for="alamat">Alamat</label>
-                        <input type="text" class="form-control" 
+                        <input type="text" class="form-control"
                         required="required" name="alamat" value="{{$pelanggan->alamat}}"></br>
                         </div>
                         <div class="form-group">
                         <label for="no_telepon">No Telepon</label>
-                        <input type="text" class="form-control" 
+                        <input type="text" class="form-control"
                         required="required" name="no_telepon" value="{{$pelanggan->no_telepon}}"></br>
                         </div>
-                        <button type="submit" name="edit" class="btn btn-primary 
+                        <div class="form-group">
+                            <label for="kategori_id">Kategori</label>
+                            <select class="form-control" name="kategori_id">
+                                @foreach ($kategori as $k)
+                                   <option value="{{ $k->id }}">{{ $pelanggan->kategori_id == $k->id ? "selected":"" }}>{{ $k->nama_kategori }}</option>
+                                @endforeach
+                             </select><br>
+                        </div>
+                        <button type="submit" name="edit" class="btn btn-primary
                         float-right">Save Changes</button>
                     </form>
                 </div>

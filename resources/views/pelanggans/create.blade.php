@@ -18,20 +18,28 @@
                     @csrf
                     <div class="form-group">
                     <label for="nama">Nama</label>
-                    <input type="text" class="form-control" 
+                    <input type="text" class="form-control"
                     required="required" name="nama"></br>
                     </div>
                     <div class="form-group">
                     <label for="alamat">Alamat</label>
-                    <input type="text" class="form-control" 
+                    <input type="text" class="form-control"
                     required="required" name="alamat"></br>
                     </div>
                     <div class="form-group">
                     <label for="no_telepon">No Telepon</label>
-                    <input type="text" class="form-control" 
+                    <input type="text" class="form-control"
                     required="required" name="no_telepon"></br>
                     </div>
-                    <button type="submit" name="add" class="btn btn-primary 
+                    <div class="form-group">
+                        <label for="kategori_id">Kategori</label>
+                        <select class="form-control" name="kategori_id">
+                            @foreach ($kategori as $k)
+                               <option value="{{ $k->id }}">{{ $k->nama_kategori }}</option>
+                            @endforeach
+                         </select><br>
+                    </div>
+                    <button type="submit" name="add" class="btn btn-primary
                     float-right">Add Data</button>
                     </form>
                 </div>
